@@ -1,0 +1,6 @@
+class Moon{
+	class Star{
+		
+	
+	}
+}
