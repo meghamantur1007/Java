@@ -1,9 +1,11 @@
 package com.xworkz.collections.DTO;
 
+import java.io.Serializable;
+
 import com.xworkz.collections.constants.Code;
 import com.xworkz.collections.constants.Continent;
 
-public class CountryDTO<S, D> {
+public class CountryDTO<S, D> implements Serializable {
 	private S name;
 	private Code code;
 	private D population;
