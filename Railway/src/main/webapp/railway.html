@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Railway Booking</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"></head>
+<body>
+
+	<div class="container mt-5">
+		<h2>Railway Booking Form</h2>
+		<form action="send" method="post">
+			<!-- Name -->
+			<div class="mb-3">
+				<label for="name" class="form-label">Name</label> <input type="text"
+					name="name" class="form-control" id="name"
+					placeholder="Enter your name">
+			</div>
+
+			<!-- Source -->
+			<div class="mb-3">
+				<label for="source" class="form-label">Source</label> <select
+					class="form-select" name="psource" id="source">
+					<option selected>Select source</option>
+					<option value="1">Bangalore</option>
+					<option value="2">Mumbai</option>
+					<option value="3">Delhi</option>
+				</select>
+
+			</div>
+
+			<!-- Destination -->
+			<div class="mb-3">
+				<label for="destination" class="form-label">Destination</label> <select
+					class="form-select" name="dest" id="destination">
+					<option selected>Select Destination</option>
+					<option value="1">Mangalore</option>
+					<option value="2">Kolkata</option>
+					<option value="3">Pune</option>
+				</select>
+			</div>
+
+			<!-- Start Date -->
+			<div class="mb-3">
+				<label for="start-date" class="form-label">Start Date</label> <input
+					type="date" name="sdate" class="form-control"
+					id="start-date>
+			</div>
+			
+			<!-- Return Date -->
+			<div class="mb-3">
+				<label for="return-date" class="form-label">Return Date</label> <input
+					type="date" name="rdate" class="form-control"
+					id="return-date>
+			</div>
+			
+			<!-- Seat Type -->
+			<div class="mb-3">
+				<label for="seat-type" class="form-label">Seat Type</label> <select
+					class="form-select" name="seat" id="seat-type">
+					<option selected>Select Seat Type</option>
+					<option value="1">Sleeper</option>
+					<option value="2">AC 3 Tier</option>
+					<option value="3">Ac 2 Tier</option>
+					<option value="4">Ac 1 Tier</option>
+				</select>
+			</div>
+
+			<!-- Total Ticket -->
+			<div class="mb-3">
+				<label for="total-ticket" class="form-label">Total Ticket</label> <input
+					type="number" name="tticket" class="form-control" id="total-ticket"
+					placeholder="Enter total number of tickets">
+			</div>
+
+
+			<!-- Number of Male -->
+			<div class="mb-3">
+				<label for="num-male" class="form-label">No of Male</label> <input
+					type="number" name="males" class="form-control" id="num-male"
+					placeholder="Enter number of males">
+			</div>
+
+
+			<!-- Number of female -->
+			<div class="mb-3">
+				<label for="num-female" class="form-label">No of Female</label> <input
+					type="number" name="females" class="form-control" id="num-female"
+					placeholder="Enter number of females">
+			</div>
+
+
+			<!-- Submit Button -->
+			<button type="submit" class="btn btn-success">Book</button>
+
+
+		</form>
+	</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
