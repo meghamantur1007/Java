@@ -1,0 +1,47 @@
+package com.xworkz.servlet.forms;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.xworkz.servlet.dto.ConcertTiketDTO;
+
+
+@WebServlet(loadOnStartup = 1, urlPatterns = "/bookTicket")
+public class ConcertTicket extends HttpServlet {
+
+	public ConcertTicket() {
+		System.out.println("Created ConcertTicket Form");
+	}
+
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		System.out.println("running service in ConcertTicket");
+
+		String location = req.getParameter("location");
+		String artistName = req.getParameter("artistName");
+		String ticketType=req.getParameter("ticketType");
+		String totalTickets = req.getParameter("totalTickets");
+		String prefernceType = req.getParameter("prefernceType");
+
+		int totalTicketsConverted = Integer.valueOf(totalTickets);
+
+		ConcertTiketDTO dto=new ConcertTiketDTO(location, artistName, ticketType, totalTicketsConverted, prefernceType);
+		System.out.println("Location: " + location);
+		System.out.println("Artist Name: " + artistName);
+		System.out.println("TicketType: " + ticketType);
+		System.out.println("Number Of Tickets: " + totalTicketsConverted);
+		System.out.println("prefernceType: " + prefernceType);
+
+
+		PrintWriter print = res.getWriter();
+		print.print("<html><body>");
+		print.print("<h2>Success in sending Data</h2>");
+
+	}
+}
