@@ -3,6 +3,7 @@ package com.xworkz.servlet.forms;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,19 +40,17 @@ public class MovieTicket extends HttpServlet {
 		MovieTicketDTO dto = new MovieTicketDTO(name, totalTicketsConverted, theaterName, seatType, donationConverted, date, time);
 		
 		MovieTicketService service=new MovieTicketServiceImpl();
-		boolean validate=service.validateAndSave(dto);
-		if(validate) {
-			System.out.println("Valid data");
-		}
-		else {
-			System.err.println("Invalid Data");
-		}
-
 		
-		System.out.println(dto);
-		PrintWriter print = res.getWriter();
-		print.print("<html><body>");
-		print.print("<h2>Success in sending Data</h2>");
+		if (service.validateAndSave(dto)) {
+			System.out.println("movieTicket is success");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/movieTicket.jsp");
+			String movieName = req.getParameter("name");
+			req.setAttribute("name", movieName);
+			dispatcher.forward(req, res);
+
+		} else {
+			System.out.println("not success");
+		}
 
 	}
 }

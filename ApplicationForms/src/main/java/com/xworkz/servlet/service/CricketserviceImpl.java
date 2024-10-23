@@ -19,13 +19,13 @@ public class CricketserviceImpl implements CricketService {
         System.out.println("================");
 
 		String customerName = dto.getCustomerName();
-		if (customerName == null && customerName.isEmpty() && customerName.length() < 3
-				&& customerName.length() > 100) {
-			System.out.println("Customer Name is invalid");
+		if (customerName != null && !customerName.isEmpty() && customerName.length() >= 3
+				&& customerName.length() <= 100) {
+			System.out.println("Customer Name is valid");
 
 		} else {
 			valid = false;
-			System.out.println("Customer Name is valid");
+			System.out.println("Customer Name is invalid");
 		}
 		
         System.out.println("================");
@@ -37,17 +37,16 @@ public class CricketserviceImpl implements CricketService {
 		} else {
 			valid = false;
 			System.err.println("Inavlid Email");
-			return valid = true;
 		}
 		
         System.out.println("================");
 
 		int noOfTickets = dto.getNoOfTickets();
-        if (noOfTickets <= 0) {
-            System.out.println("Number of Tickets is invalid");
+        if (noOfTickets> 0) {
+            System.out.println("Number of Tickets is valid");
         } else {
             valid=false;
-            System.err.println("Number of Tickets is valid");
+            System.err.println("Number of Tickets is invalid");
         }
 		return valid;
 	}

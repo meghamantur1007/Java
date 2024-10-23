@@ -3,6 +3,7 @@ package com.xworkz.servlet.forms;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,17 +33,16 @@ public class Feedback extends HttpServlet {
 		System.out.println(dto);
 		
 		FeedbackService feedback=new FeedbackServiceImpl();
-		boolean validate=feedback.validateAndSave(dto);
-		if(validate) {
-			System.out.println("Valid data");
-		}
-		else {
-			System.err.println("Invalid Data");
-		}
+		if (feedback.validateAndSave(dto)) {
+			System.out.println("giving feedback is success");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/feedback.jsp");
+			String response = req.getParameter("name");
+			req.setAttribute("name", response);
+			dispatcher.forward(req, res);
 
-		PrintWriter print = res.getWriter();
-		print.print("<html><body>");
-		print.print("<h2>Success in sending Data</h2>");
+		} else {
+			System.out.println("not success");
+		}
 
 	}
 }

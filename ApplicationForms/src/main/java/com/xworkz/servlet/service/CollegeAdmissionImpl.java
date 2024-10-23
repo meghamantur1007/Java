@@ -29,7 +29,7 @@ public class CollegeAdmissionImpl implements CollegeAdmissionService {
         System.out.println("================");
 
 		String address = admissionDTO.getAddress();
-		if (address != null && !address.isEmpty() && address.length() >= 10 && address.length() <= 500) {
+		if (address != null && !address.isEmpty() && address.length() >= 3&& address.length() <= 500) {
 			System.out.println("Address is valid.");
 		} else {
 			valid = false;
@@ -61,8 +61,9 @@ public class CollegeAdmissionImpl implements CollegeAdmissionService {
 		double percentage = admissionDTO.getPercentage();
 		if (percentage >= 0 && percentage <= 100) {
 			System.out.println("Percentage is valid");
-			valid = false;
+	
 		} else {
+			valid = false;
 			System.out.println("Percentage is invalid");
 
 		}
@@ -73,11 +74,11 @@ public class CollegeAdmissionImpl implements CollegeAdmissionService {
 		int ageConverted = admissionDTO.getAge();
 		if (ageConverted > 18) {
 			System.out.println("age is valid");
+
 		} else {
 			valid = false;
 			System.out.println("invalid age");
 		}
-
 		return valid;
 
 	}

@@ -3,6 +3,7 @@ package com.xworkz.servlet.forms;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,32 +34,28 @@ public class CollegeAdmission extends HttpServlet {
 		String percentage = req.getParameter("percentage");
 		String course = req.getParameter("course");
 		String age = req.getParameter("age");
-		
-		long mobileConverted=Long.valueOf(mobile);
-		double percentageConverted=Double.valueOf(percentage);
-		int ageConverted=Integer.valueOf(age);
-		
-		CollegeAdmissionDTO dto=new CollegeAdmissionDTO(name,email,mobileConverted,address,fatherName,motherName,percentageConverted,course,ageConverted);
+
+		long mobileConverted = Long.valueOf(mobile);
+		double percentageConverted = Double.valueOf(percentage);
+		int ageConverted = Integer.valueOf(age);
+
+		CollegeAdmissionDTO dto = new CollegeAdmissionDTO(name, email, mobileConverted, address, fatherName, motherName,
+				percentageConverted, course, ageConverted);
 		System.out.println(dto);
-		
-		
-		CollegeAdmissionService service=new CollegeAdmissionImpl();
-		boolean validate=service.validateAndSave(dto);
-		if(validate) {
-			System.out.println("Valid data");
+
+		CollegeAdmissionService service = new CollegeAdmissionImpl();
+
+		if (service.validateAndSave(dto)) {
+			System.out.println("admission is success");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/collegeAdmission.jsp");
+			String student = req.getParameter("name");
+			req.setAttribute("name", student);
+			dispatcher.forward(req, res);
+
+		} else {
+			System.out.println("not success");
 		}
-		else {
-			System.err.println("Invalid data");
-		}
-		
-		
-		
-		PrintWriter print = res.getWriter();
-		print.print("<html><body>");
-		print.print("<h2>Success in sending Data</h2>");	
-		
-		
-		
+
 		
 
 	}

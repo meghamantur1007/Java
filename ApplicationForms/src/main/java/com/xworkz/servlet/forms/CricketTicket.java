@@ -3,6 +3,7 @@ package com.xworkz.servlet.forms;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,18 +38,16 @@ public class CricketTicket extends HttpServlet {
 		System.out.println(dto);
 		
 		CricketService service=new CricketserviceImpl();
-		boolean validate=service.validateAndSave(dto);
-		if(validate) {
-			System.out.println("Valid data");
-		}
-		else {
-			System.err.println("Invalid Data");
-		}
+		if (service.validateAndSave(dto)) {
+			System.out.println("cricket ticket is success");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/cricket.jsp");
+			String customer = req.getParameter("customerName");
+			req.setAttribute("customerName", customer);
+			dispatcher.forward(req, res);
 
-		
-		PrintWriter print = res.getWriter();
-		print.print("<html><body>");
-		print.print("<h2>Success in sending Data</h2>");
+		} else {
+			System.out.println("not success");
+		}
 
 	}
 }
